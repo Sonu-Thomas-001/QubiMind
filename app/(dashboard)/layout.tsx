@@ -1,12 +1,13 @@
-import { BrainCircuit, Settings, Users, LayoutDashboard, Database, MessageSquare } from "lucide-react";
+import { BrainCircuit, Settings, Users, LayoutDashboard, Database, MessageSquare, Search } from "lucide-react";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Input } from "@/components/ui/input";
 
 const SIDEBAR_LINKS = [
   { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
-  { name: "Agents", href: "/dashboard/agents", icon: BrainCircuit },
+  { name: "AI Agents", href: "/dashboard/agents", icon: BrainCircuit },
   { name: "Knowledge Base", href: "/dashboard/knowledge", icon: Database },
-  { name: "Chats", href: "/dashboard/chats", icon: MessageSquare },
+  { name: "Recent Chats", href: "/dashboard/chats", icon: MessageSquare },
   { name: "Team", href: "/dashboard/team", icon: Users },
   { name: "Settings", href: "/dashboard/settings", icon: Settings },
 ];
@@ -54,7 +55,22 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       {/* Main Content */}
       <main className="flex-1 flex flex-col min-w-0">
         <header className="h-16 border-b border-border bg-background/80 backdrop-blur-md flex items-center justify-between px-6 sticky top-0 z-10">
-          <h1 className="text-lg font-semibold">Workspace</h1>
+          <div className="flex items-center gap-4 flex-1">
+            <h1 className="text-lg font-semibold hidden md:block">Workspace</h1>
+            <div className="relative w-full max-w-md ml-0 md:ml-4">
+              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+              <Input
+                type="search"
+                placeholder="Search agents, chats, documents..."
+                className="w-full bg-background pl-9 md:w-[300px] lg:w-[400px]"
+              />
+            </div>
+          </div>
+          <div className="flex items-center gap-4 ml-4">
+             <Avatar className="h-8 w-8 md:hidden">
+              <AvatarFallback>JD</AvatarFallback>
+            </Avatar>
+          </div>
         </header>
         <div className="flex-1 p-6 overflow-auto">
           {children}

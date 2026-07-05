@@ -7,10 +7,10 @@ import { BrainCircuit, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
 const NAV_LINKS = [
-  { name: "Features", href: "#features" },
-  { name: "Agents", href: "#agents" },
-  { name: "Pricing", href: "#pricing" },
-  { name: "Documentation", href: "#docs" },
+  { name: "Features", href: "/#features" },
+  { name: "Pricing", href: "/#pricing" },
+  { name: "Documentation", href: "/#docs" },
+  { name: "About", href: "/#about" },
 ];
 
 export function Navbar() {
@@ -58,10 +58,14 @@ export function Navbar() {
 
           {/* Actions */}
           <div className="hidden md:flex items-center gap-4">
-            <Button variant="ghost" size="sm">
-              Sign In
-            </Button>
-            <Button size="sm">Get Started</Button>
+            <Link href="/login">
+              <Button variant="ghost" size="sm">
+                Login
+              </Button>
+            </Link>
+            <Link href="/register">
+              <Button size="sm">Get Started</Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -97,10 +101,14 @@ export function Navbar() {
                 </Link>
               ))}
               <div className="pt-4 flex flex-col gap-2">
-                <Button variant="outline" className="w-full justify-center">
-                  Sign In
-                </Button>
-                <Button className="w-full justify-center">Get Started</Button>
+                <Link href="/login" onClick={() => setIsMobileMenuOpen(false)}>
+                  <Button variant="outline" className="w-full justify-center">
+                    Login
+                  </Button>
+                </Link>
+                <Link href="/register" onClick={() => setIsMobileMenuOpen(false)}>
+                  <Button className="w-full justify-center">Get Started</Button>
+                </Link>
               </div>
             </div>
           </motion.div>
