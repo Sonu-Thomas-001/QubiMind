@@ -9,8 +9,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Enterprise AI Assistant | Multi-Agent Platform',
-  description: 'The world\'s most powerful Multi-Agent Enterprise AI Assistant. Build, deploy, and scale intelligent workflows.',
+  title: 'QubiMind | Enterprise Multi-Agent AI OS',
+  description: 'QubiMind is an enterprise-grade Multi-Agent AI Operating System developed by QubiQode.',
 };
 
 export default function RootLayout({

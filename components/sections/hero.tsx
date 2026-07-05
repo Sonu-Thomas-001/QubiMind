@@ -22,7 +22,7 @@ export function Hero() {
         >
           <Badge variant="secondary" className="px-3 py-1 text-sm border border-primary/20 bg-primary/10 text-primary flex items-center gap-2">
             <Sparkles className="h-4 w-4" />
-            Nexus AI 2.0 is now available
+            QubiMind 2.0 is now available
           </Badge>
         </motion.div>
 
@@ -79,7 +79,7 @@ export function Hero() {
                   <div className="w-3 h-3 rounded-full bg-green-500/80" />
                 </div>
                 <div className="mx-auto bg-background border border-border rounded-md px-3 py-1 text-xs text-muted-foreground w-64 text-center truncate">
-                  nexus-agent-coordinator.app
+                  qubimind-coordinator.app
                 </div>
               </div>
               <div className="flex-1 p-6 flex flex-col md:flex-row gap-6 bg-grid-pattern">

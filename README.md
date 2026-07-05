@@ -1,6 +1,6 @@
-# Enterprise Multi-Agent AI Assistant
+# QubiMind
 
-The world's most powerful Multi-Agent Enterprise AI Assistant. Build, deploy, and scale intelligent workflows.
+QubiMind is an enterprise-grade Multi-Agent AI Operating System developed by QubiQode. Built with Next.js, FastAPI, LangGraph, LangChain, RAG, PostgreSQL, Redis, and modern LLMs, it delivers intelligent automation, enterprise knowledge retrieval, AI agent collaboration, and scalable workflow orchestration through a secure, production-ready architecture.
 
 ## Features
 

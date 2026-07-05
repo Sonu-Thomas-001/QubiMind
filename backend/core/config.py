@@ -2,7 +2,7 @@ from typing import Union
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
-    PROJECT_NAME: str = "Enterprise AI Assistant API"
+    PROJECT_NAME: str = "QubiMind API"
     API_V1_STR: str = "/api/v1"
     
     # Security

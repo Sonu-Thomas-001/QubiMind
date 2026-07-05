@@ -21,7 +21,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
               <BrainCircuit className="h-5 w-5 text-primary-foreground" />
             </div>
-            <span className="font-semibold text-lg tracking-tight">Nexus AI</span>
+            <span className="font-semibold text-lg tracking-tight">QubiMind</span>
           </Link>
         </div>
         

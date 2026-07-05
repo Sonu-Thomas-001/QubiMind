@@ -35,7 +35,7 @@ export function FAQ() {
             Frequently Asked Questions
           </h2>
           <p className="text-lg text-muted-foreground">
-            Everything you need to know about Nexus AI and multi-agent workflows.
+            Everything you need to know about QubiMind and multi-agent workflows.
           </p>
         </div>
 

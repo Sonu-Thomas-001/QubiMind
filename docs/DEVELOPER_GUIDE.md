@@ -1,6 +1,6 @@
 # Developer Guide
 
-Welcome to the Enterprise AI Assistant developer guide.
+Welcome to the QubiMind developer guide.
 
 ## Code Standards
 
