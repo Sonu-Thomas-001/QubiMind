@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -9,51 +8,40 @@ import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { BrainCircuit, Loader2 } from "lucide-react";
-import { useAuth } from "@/hooks/use-auth";
 import { Input } from "@/components/ui/input";
 
-const loginSchema = z.object({
+const forgotSchema = z.object({
   email: z.string().email({ message: "Invalid email address" }),
-  password: z.string().min(1, { message: "Password is required" }),
 });
 
-type LoginFormValues = z.infer<typeof loginSchema>;
+type ForgotFormValues = z.infer<typeof forgotSchema>;
 
-export default function LoginPage() {
-  const router = useRouter();
-  const { setAuth } = useAuth();
+export default function ForgotPasswordPage() {
   const [error, setError] = useState<string | null>(null);
+  const [isSuccess, setIsSuccess] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const form = useForm<LoginFormValues>({
-    resolver: zodResolver(loginSchema),
-    defaultValues: {
-      email: "",
-      password: "",
-    },
+  const form = useForm<ForgotFormValues>({
+    resolver: zodResolver(forgotSchema),
+    defaultValues: { email: "" },
   });
 
-  async function onSubmit(data: LoginFormValues) {
+  async function onSubmit(data: ForgotFormValues) {
     setIsLoading(true);
     setError(null);
     try {
       // API call to backend
-      const response = await fetch("http://localhost:8000/api/v1/auth/login", {
+      const response = await fetch("http://localhost:8000/api/v1/auth/forgot-password", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
 
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.detail || "Login failed");
+        throw new Error("Failed to send reset email");
       }
 
-      const result = await response.json();
-      setAuth(result.user, result.access_token);
-      router.push("/dashboard");
+      setIsSuccess(true);
     } catch (err: any) {
       setError(err.message);
     } finally {
@@ -69,9 +57,9 @@ export default function LoginPage() {
             <BrainCircuit className="h-6 w-6 text-primary-foreground" />
           </div>
         </div>
-        <CardTitle className="text-2xl">Welcome back</CardTitle>
+        <CardTitle className="text-2xl">Reset Password</CardTitle>
         <CardDescription>
-          Sign in to your QubiMind account
+          Enter your email and we'll send you a reset link
         </CardDescription>
       </CardHeader>
       <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -81,8 +69,13 @@ export default function LoginPage() {
               {error}
             </div>
           )}
+          {isSuccess && (
+            <div className="p-3 text-sm text-green-500 bg-green-100 dark:bg-green-900/20 rounded-md">
+              Password reset link sent! Check your email.
+            </div>
+          )}
           <div className="space-y-2">
-            <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+            <label className="text-sm font-medium leading-none">
               Email
             </label>
             <Input
@@ -94,33 +87,16 @@ export default function LoginPage() {
               <p className="text-xs text-red-500">{form.formState.errors.email.message}</p>
             )}
           </div>
-          <div className="space-y-2">
-            <div className="flex items-center justify-between">
-              <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                Password
-              </label>
-              <Link href="/forgot-password" className="text-xs text-primary hover:underline">
-                Forgot password?
-              </Link>
-            </div>
-            <Input
-              type="password"
-              {...form.register("password")}
-            />
-            {form.formState.errors.password && (
-              <p className="text-xs text-red-500">{form.formState.errors.password.message}</p>
-            )}
-          </div>
         </CardContent>
         <CardFooter className="flex flex-col space-y-4">
-          <Button type="submit" className="w-full" disabled={isLoading}>
+          <Button type="submit" className="w-full" disabled={isLoading || isSuccess}>
             {isLoading ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : null}
-            Sign In
+            Send Reset Link
           </Button>
           <div className="text-center text-sm text-muted-foreground">
-            Don&apos;t have an account?{" "}
-            <Link href="/register" className="text-primary hover:underline">
-              Sign up
+            Remember your password?{" "}
+            <Link href="/login" className="text-primary hover:underline">
+              Sign in
             </Link>
           </div>
         </CardFooter>

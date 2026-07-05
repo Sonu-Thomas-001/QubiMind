@@ -2,6 +2,8 @@ import { BrainCircuit, Settings, Users, LayoutDashboard, Database, MessageSquare
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
+import { UserNav } from "@/components/layout/user-nav";
+import { SidebarProfile } from "@/components/layout/sidebar-profile";
 
 const SIDEBAR_LINKS = [
   { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
@@ -40,15 +42,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         </nav>
 
         <div className="p-4 border-t border-border">
-          <div className="flex items-center gap-3 px-3 py-2">
-            <Avatar>
-              <AvatarFallback>JD</AvatarFallback>
-            </Avatar>
-            <div className="flex flex-col">
-              <span className="text-sm font-medium leading-none">John Doe</span>
-              <span className="text-xs text-muted-foreground mt-1">Admin</span>
-            </div>
-          </div>
+          <SidebarProfile />
         </div>
       </aside>
 
@@ -67,9 +61,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             </div>
           </div>
           <div className="flex items-center gap-4 ml-4">
-             <Avatar className="h-8 w-8 md:hidden">
-              <AvatarFallback>JD</AvatarFallback>
-            </Avatar>
+             <UserNav />
           </div>
         </header>
         <div className="flex-1 p-6 overflow-auto">
