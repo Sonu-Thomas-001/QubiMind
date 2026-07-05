@@ -1,0 +1,8 @@
+{
+  "name": "Enterprise AI Assistant",
+  "description": "Multi-Agent Enterprise AI Assistant",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
